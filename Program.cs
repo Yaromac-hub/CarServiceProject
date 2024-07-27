@@ -1,16 +1,20 @@
 using CarServiceProject.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("CarServiceProjectDbContextConnectionPostgres") ?? throw new InvalidOperationException("Connection string 'CarServiceDbContextConnection' not found.");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<CarServiceDbContext>(options =>
     {
-        options.UseNpgsql(builder.Configuration["ConnectionStrings:CarServiceProjectDbContextConnectionPostgres"]);
+        options.UseNpgsql(connectionString);
     }
 );
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<CarServiceDbContext>();
 
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IContactInfoRepository, ContactInfoRepository>();
@@ -31,13 +35,15 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseStaticFiles();
 
-app.UseRouting();
-
 app.UseAuthentication();
+app.UseRouting();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 DbInitializer.Seed(app);
 app.Run();
