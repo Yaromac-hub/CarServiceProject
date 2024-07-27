@@ -1,0 +1,10 @@
+@model InventoryItem
+
+<div class="row gx-5">
+    <partial name="_ItemOne" model="@Model" />
+    <div class="col-10">
+        <h4 class="card-text">@Model.Description</h4>
+        <p>Price: $@Model.Price</p>
+        <p>Sale Price: @Model.DiscountedPrice </p>
+    </div>
+</div>

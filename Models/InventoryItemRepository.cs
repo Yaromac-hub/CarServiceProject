@@ -10,5 +10,11 @@ namespace CarServiceProject.Models
         public IQueryable<InventoryItem> InventoryItems => _carServiceDbContext.InventoryItems;
 
         public IQueryable<InventoryItem> InventoryItemsOnSale => _carServiceDbContext.InventoryItems.Where(i => i.OnSale);
+        
+        public InventoryItem? GetInventoryItemById(int InventoryItemId) 
+        {
+            var service = _carServiceDbContext.InventoryItems.FirstOrDefault(s => s.InventoryItemId == InventoryItemId);
+            return service;
+        }
     }
 }

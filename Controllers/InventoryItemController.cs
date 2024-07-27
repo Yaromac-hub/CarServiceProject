@@ -16,25 +16,50 @@ namespace CarServiceProject.Controllers
         }
         //public IActionResult List() => View(repository.InventoryItems);
 
-        public ViewResult List(string category)
+        public ViewResult List(int? categoryId, string? searchText, decimal? minPrice, decimal? maxPrice)
         {
             IQueryable<InventoryItem> inventoryItems;
-            string? currentCategory;
 
-            if (string.IsNullOrEmpty(category))
+            if (categoryId==null)
             {
                 inventoryItems = _inventoryItemRepository.InventoryItems.OrderBy(i => i.InventoryItemId);
-                currentCategory = "All Categories";
             }
             else
             {
-                inventoryItems = _inventoryItemRepository.InventoryItems.Where(p => p.Category.Name == category)
+                inventoryItems = _inventoryItemRepository.InventoryItems.Where(p => p.Category.CategoryId == categoryId)
                     .OrderBy(i => i.InventoryItemId);
-                currentCategory = _categoryRepository.Categories.FirstOrDefault(c => c.Name == category)?.Name;
             }
-            var viewModel = new InventoryItemListViewModel(inventoryItems, category);
+            
+            //filter by name
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                inventoryItems = inventoryItems.Where(p => p.Name.Contains(searchText));
+            }
+
+            //price filter
+            if (minPrice != null)
+            {
+                inventoryItems = inventoryItems.Where(p => p.Price >= minPrice);
+            }
+            
+            //price filter
+            if (maxPrice != null)
+            {
+                inventoryItems = inventoryItems.Where(p => p.Price <= maxPrice);
+            }
+            
+            var viewModel = new InventoryItemListViewModel(inventoryItems);
 
             return View(viewModel);
+        }
+        
+        public IActionResult Search()
+        {
+            return View();
+        }
+        
+        public IActionResult Details(int id){
+            return View(_inventoryItemRepository.GetInventoryItemById(id));
         }
     }
 }

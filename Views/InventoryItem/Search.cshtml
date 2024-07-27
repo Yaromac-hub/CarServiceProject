@@ -1,0 +1,84 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-2 order-md-first justify-content-center">
+            <div class="product-filter">
+                <form id="searchForm" class="form-inline">
+                    <div class="form-group">
+                        <label for="searchText">Search By Name</label>
+                        <input type="text" name="searchText" class="form-control" placeholder="Search by name"
+                            id="searchText" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="productType">Select Product type</label>
+                        <vc:category-item> </vc:category-item>
+                    </div>
+                    <div class="form-group">
+                        <label for="minPrice">Select Min Price</label>
+                        <input type="number" name="minPrice" class="form-control" placeholder="Min price" value="0"
+                            id="minPrice" />
+                    </div>
+                    <div class="form-group">
+                        <label for="maxPrice">Select Max Price</label>
+                        <input type="number" name="maxPrice" class="form-control" placeholder="Max price" value="1000"
+                            id="maxPrice" />
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <button id="searchButton" class="btn btn-success btn-send  pt-2 btn-block">Search</button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md-10">
+            <div id="items" class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-7 g-4">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function parseData(event) {
+        if(event!=null){
+            event.preventDefault();
+        }
+        
+        console.log("Hello!")
+        let payload = {};
+        payload.searchText = $("#searchText").val();
+        payload.categoryId = !isNaN(parseInt($("#categoryId").val())) ? parseInt($("#categoryId").val()) : null;
+        payload.minPrice = !isNaN(parseFloat($("#minPrice").val())) ? parseFloat($("#minPrice").val()) : null;
+        payload.maxPrice = !isNaN(parseFloat($("#maxPrice").val())) ? parseFloat($("#maxPrice").val()) : null;
+
+        $("#items").html("");
+        $.ajax({
+            type: "POST",
+            url: "/api/Search",
+            data: JSON.stringify(payload),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                $("#items").empty();
+
+                $.each(data, function (index, item) {
+                    const newRow = $("<div>");
+                    newRow.append($("<div>").html('<img src="' + '/' + item.imageUrl + '" width="200" class="rounded m-2">'));
+                    newRow.append($("<div>").html('<h5><a href="/InventoryItem/Details/' + item.inventoryItemId + '" class="item-link">' + item.name + '</a></h5>'));
+                    $("#items").append(newRow);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        parseData(null);
+        $("#searchButton").click(function (event) {parseData(event);});
+    });
+
+</script>

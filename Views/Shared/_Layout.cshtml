@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="~/CarServiceProject.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/lib/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="~/lib/owlcarousel/assets/owl.theme.default.min.css">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 </head>
 
 <body>
@@ -28,8 +31,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="InventoryItem"
-                                asp-action="List">Inventory</a>
+                               asp-action="List">Inventory</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="InventoryItem"
+                               asp-action="Search">Inventory (API)</a>
+                            </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Service"
                                 asp-action="List">Service</a>
@@ -47,7 +54,6 @@
     <div class="container-fluid text-dark footer pt-5 mt-5 text-center">
         &copy; 2024 - CarServiceProject
     </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

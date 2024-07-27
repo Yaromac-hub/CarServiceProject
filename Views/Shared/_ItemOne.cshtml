@@ -1,0 +1,11 @@
+<div class="col">
+    <div class="card h-100 position-relative">
+        <img src="@Url.Content("~/"+@Model.ImageUrl)" width="200" class="card-img-top" alt="@Model.Name">
+        <div class="card-body">
+            <h5 class="card-title text-dark">
+                <a asp-controller="InventoryItem" asp-action="Details" asp-route-id="@Model.InventoryItemId"
+                                    class="item-link">@Model.Name</a>
+            </h5>
+        </div>
+    </div>
+</div>

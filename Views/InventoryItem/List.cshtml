@@ -1,10 +1,52 @@
 @model InventoryItemListViewModel
 
-<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-7 g-4">
-    @foreach (var p in Model.InventoryItems ?? Enumerable.Empty<InventoryItem>())
-    {
-        <div class="col">
-            <partial name="_InventoryItem" model="p" />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-2 order-md-first justify-content-center">
+            <div class="product-filter">
+                <form method="get" class="form-inline">
+                    <div class="form-group">
+                        <label for="searchText">Search By Name</label>
+                        <input type="text" name="searchText" class="form-control" placeholder="Search by name"
+                               id="searchText" value="@Context.Request.Query["searchText"]"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="productType">Select Product type</label>
+                        <vc:category-item> </vc:category-item>
+                    </div>
+                    <div class="form-group">
+                        <label for="minPrice">Select Min Price</label>
+                        <input type="number" name="minPrice" class="form-control" placeholder="Min price" 
+                               value="@Context.Request.Query["minPrice"]"  id="minPrice"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="maxPrice">Select Max Price</label>
+                        <input type="number" name="maxPrice" class="form-control" placeholder="Max price"
+                               value="@Context.Request.Query["maxPrice"]" id="maxPrice"/>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-12">
+                            <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
+                                                " value="Search">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        
+                    </div>
+                </form>
+            </div>
         </div>
-    }
+        <div class="col-12 col-md-10">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-7 g-4">
+                @foreach (var p in Model.InventoryItems ?? Enumerable.Empty<InventoryItem>())
+                {
+                    <div class="col">
+                        <div class="product-list-item">
+                            <partial name="_InventoryItem" model="p" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>

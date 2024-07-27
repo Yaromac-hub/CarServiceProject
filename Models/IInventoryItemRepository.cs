@@ -4,5 +4,6 @@ namespace CarServiceProject.Models
     {
         IQueryable<InventoryItem> InventoryItems { get; }
         IQueryable<InventoryItem> InventoryItemsOnSale { get; }
+        InventoryItem? GetInventoryItemById(int id); 
     }
 }

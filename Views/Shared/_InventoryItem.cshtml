@@ -3,7 +3,8 @@
         <img src="@Url.Content("~/"+@Model.ImageUrl)" class="card-img-top embed-responsive-item" alt="@Model.Name Image">
     </div>
     <div class="card-body bg-light rounded-bottom">
-        <a href="#" class="card-title">@Model.Name</a>
+        <a asp-controller="InventoryItem" asp-action="Details" asp-route-id="@Model.InventoryItemId"
+                               class="card-title">@Model.Name</a>
         <p class="card-text">
             @if (@Model.OnSale)
             {
