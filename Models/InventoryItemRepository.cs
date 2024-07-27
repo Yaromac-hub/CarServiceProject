@@ -8,5 +8,7 @@ namespace CarServiceProject.Models
             _carServiceDbContext = carServiceDbContext;
         }
         public IQueryable<InventoryItem> InventoryItems => _carServiceDbContext.InventoryItems;
+
+        public IQueryable<InventoryItem> InventoryItemsOnSale => _carServiceDbContext.InventoryItems.Where(i => i.OnSale);
     }
 }

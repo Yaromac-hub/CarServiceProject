@@ -1,0 +1,10 @@
+@model InventoryItemListViewModel
+
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-7 g-4">
+    @foreach (var p in Model.InventoryItems ?? Enumerable.Empty<InventoryItem>())
+    {
+        <div class="col">
+            <partial name="_InventoryItem" model="p" />
+        </div>
+    }
+</div>
