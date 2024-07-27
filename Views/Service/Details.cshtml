@@ -1,0 +1,10 @@
+@model Service
+
+<div class="row gx-5">
+    <partial name="_ServiceOne" model="@Model" />
+    <div class="col-7">
+        <h4 class="card-text">@Model.Description</h4>
+        <p>Starts from: $@Model.Price</p>
+        <p>Approximate duration: @Model.Duration </p>
+    </div>
+</div>

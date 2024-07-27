@@ -1,0 +1,10 @@
+@model ServiceViewModel
+
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-7 g-4 justify-content-center">
+    @foreach (var service in Model.Services ?? Enumerable.Empty<Service>())
+    {
+        <div class="col">
+            <partial name="_ServiceOne" model="service" />
+        </div>
+    }
+</div>

@@ -29,15 +29,8 @@
     <div class="row row-cols-1 row-cols-lg-4 g-4 py-5">
         @foreach (var service in Model.Services)
         {
-            <div class="col">
-                <div class="card h-100 position-relative">
-                    <img src="@service.ImageUrl" class="card-img-top" alt="@service.Name">
-                    <div class="card-body">
-                        <h2 class="card-title text-dark">@service.Name</h2>
-                        <p class="card-text">@service.Description</p>
-                        <p>Price: $@service.Price</p>
-                    </div>
-                </div>
+            <div class=" col">
+                <partial name="_ServiceOne" model="service" />
             </div>
         }
     </div>
