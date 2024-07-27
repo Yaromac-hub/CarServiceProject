@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace CarServiceProject.Models
 {
     public class BookingManager : IBookingManager
@@ -17,12 +19,12 @@ namespace CarServiceProject.Models
         
         public Booking GetBookingById(int id)
         {
-            return _carServiceDbContext.Bookings.FirstOrDefault(b => b.Id == id);
+            return _carServiceDbContext.Bookings.Include(s => s.Service).FirstOrDefault(b => b.Id == id);
         }
 
         public IQueryable<Booking> GetAllBookings()
         {
-            return _carServiceDbContext.Bookings;
+            return _carServiceDbContext.Bookings.Include(s => s.Service);
         }
 
         public void UpdateBooking(Booking booking)

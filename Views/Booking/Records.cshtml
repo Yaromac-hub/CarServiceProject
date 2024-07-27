@@ -21,6 +21,7 @@
     </table>
 </p>
 
+
 <div class="modal fade" id="myModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -52,7 +53,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Service">Service</label>
-                        <input type="text" class="form-control" id="Service" placeholder="Service" />
+                        <vc:Service-Name> </vc:Service-Name>
                     </div>
                     <div class="form-group">
                         <label for="DateTime">Date Time</label>
@@ -101,7 +102,7 @@
                     html += '<td>' + item.firstName + '</td>';
                     html += '<td>' + item.lastName + '</td>';
                     html += '<td>' + item.email + '</td>';
-                    html += '<td>' + item.serviceId + '</td>';
+                    html += '<td>' + item.service.name + '</td>';
                     html += '<td>' + item.message + '</td>';
                     html += '<td>' + item.bookingDateTime + '</td>';
                     html += '<td>' +
@@ -126,7 +127,7 @@
             LastName: $('#LastName').val(),
             Email: $('#Email').val(),
             Message: $('#Message').val(),
-            ServiceId: $('#Service').val(),
+            ServiceId: $('#serviceId').val(),
             BookingDateTime: $('#DateTime').val()
         };
  
@@ -183,7 +184,7 @@
                 $('#Message').val(result.message);
                 $('#Service').val(result.serviceId);
                 $('#DateTime').val(result.bookingDateTime);
-                        
+                document.getElementById("serviceId").value = result.serviceId;
                 $('#myModal').modal('show');
                 $('#btnUpdate').show();
                 $('#btnAdd').hide();
@@ -203,10 +204,10 @@
             LastName: $('#LastName').val(),
             Email: $('#Email').val(),
             Message: $('#Message').val(),
-            ServiceId: $('#Service').val(),
+            ServiceId: $('#serviceId').val(),
             BookingDateTime: $('#DateTime').val()
         };
-        console.log($('#BookingId').val());
+
         $.ajax({
             url: "/api/bookings/" + $('#BookingId').val(),
             data: JSON.stringify(bookingObj),

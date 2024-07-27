@@ -1,0 +1,8 @@
+@model IEnumerable<Service>
+
+<select id="serviceId" name="ServiceId" class="form-control" data-error="Please specify service">
+    @foreach (var service in Model)
+    {
+        <option value="@service.ServiceId">@service.Name</option>
+    }
+</select>
