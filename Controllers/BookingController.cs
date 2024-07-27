@@ -11,6 +11,10 @@ namespace CarServiceProject.Controllers
         {
             _bookingManager = bookingManager;
         }
+        
+        public IActionResult Records(){
+            return View();
+        }
 
         [HttpPost]
         public IActionResult AddBooking(Booking booking)
