@@ -1,10 +1,112 @@
 ﻿@model HomeViewModel
 
-<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-7 g-4">
-    @foreach (var p in Model.InventoryItemsOnSale ?? Enumerable.Empty<InventoryItem>())
-    {
-        <div class="col">
-            <partial name="_InventoryItem" model="p" />
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-center">Welcome to Car Service Center</h1>
+    </div>
+</div>
+
+<div class="container-fluid g-4 py-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <h2 class="text-dark text-center"> We provide high-quality car maintenance and repair services.</h2>
+                <h5 class="text-center"> Visit us today for expert assistance! 123 Street, Porirua</h5>
+                <h5 class="text-center"> Monday - Friday: 9:00 AM - 6:00 PM</h5>
+            </div>
+            <div class="row">
+                <img src="images/topimage.png" class="img-fluid" alt="Car Service Center">
+            </div>
         </div>
-    }
+        <div class="col-md-6">
+            <partial name="_ContactForm" model="Model.Services"/>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="mb-5 text-center">Explore Our Services</h1>
+    <div class="row row-cols-1 row-cols-lg-4 g-4 py-5">
+        @foreach (var service in Model.Services)
+        {
+            <div class="col">
+                <div class="card h-100 position-relative">
+                    <img src="@service.ImageUrl" class="card-img-top" alt="@service.Name">
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">@service.Name</h2>
+                        <p class="card-text">@service.Description</p>
+                        <p>Price: $@service.Price</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="mb-5 text-center">Our Expert Technicians</h1>
+    <div class="row row-cols-1 row-cols-lg-4 g-4 py-5">
+        @foreach (var employee in Model.Employees)
+        {
+            <div class="col">
+                <div class="card h-100 position-relative">
+                    <img src="@employee.ImageUrl" class="card-img-top" alt="@employee.Name">
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">@employee.Name</h2>
+                        <p class="card-text">@employee.Position</p>
+                        <p>Contacts:</p>
+                        <p>@employee.ContactInfo.Email</p>
+                        <p>@employee.ContactInfo.Phone</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container">
+    <div class="text-center">
+        <h1>Check Out Our Sale Items.</h1>
+        <a class="nav-link text-dark" asp-area="" asp-controller="InventoryItem" asp-action="List">You can always check
+            the full list of Items on our inventory webpage</a>
+    </div>
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-7 g-4 justify-content-center">
+        @foreach (var p in Model.InventoryItemsOnSale ?? Enumerable.Empty<InventoryItem>())
+        {
+            <div class=" col">
+                <partial name="_InventoryItem" model="p" />
+            </div>
+        }
+    </div>
+</div>
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="mb-5">Our Clients Say!</h1>
+        </div>
+        <div class="owl-carousel home-owl-carousel position-relative">
+            @foreach (var feedback in Model.CustomerFeedbacks)
+            {
+                <div class="feedback-item text-center">
+                    <img class="bg-light rounded-circle p-2 mx-auto mb-3" src="@feedback.ImageUrl"
+                        style="width: 80px; height: 80px;">
+                    <h5 class="mb-0">@feedback.Name</h5>
+                    <div class="rating">
+                        @for (int i = 0; i < @feedback.Rating; i++)
+                        {
+                            <span class="star">&#9733;</span>
+                        }
+                        @for (int i = @feedback.Rating; i < 5; i++)
+                        {
+                            <span class="star">&#9734;</span>
+                        }
+                    </div>
+                    <div class="feedback-text bg-light text-center p-4">
+                        <p class="mb-0">@feedback.Comments</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>

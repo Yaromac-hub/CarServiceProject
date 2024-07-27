@@ -20,3 +20,25 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.star {
+  color: gold;
+}
+
+.btn-send {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  width: 100%;
+  margin-left: 1px;
+  }
+.help-block.with-errors {
+  color: #ff5050;
+  margin-top: 1px;
+
+}
+
+.book-card{
+margin-left: 1px;
+margin-right: 1px;
+}

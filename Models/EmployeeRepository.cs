@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace CarServiceProject.Models
 {
     public class EmployeeRepository: IEmployeeRepository
@@ -7,6 +9,6 @@ namespace CarServiceProject.Models
         {
             _carServiceDbContext = carServiceDbContext;
         }
-        public IQueryable<Employee> Employees => _carServiceDbContext.Employees;
+        public IQueryable<Employee> Employees => _carServiceDbContext.Employees.Include(e => e.ContactInfo);
     }
 }

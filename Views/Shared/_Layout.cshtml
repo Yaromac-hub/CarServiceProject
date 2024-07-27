@@ -8,30 +8,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CarServiceProject.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/lib/owlcarousel/assets/owl.theme.default.min.css">
 </head>
 
 <body>
     <header>
-        <!-- Topbar Start -->
-        <div class="container-fluid bg-light p-0">
-            <div class="row gx-0 d-none d-lg-flex">
-                <div class="col-lg-7 px-5 text-start">
-                    <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                        <small>Address: 123 Street, Petone, New Zealand</small>
-                    </div>
-                    <div class="h-100 d-inline-flex align-items-center py-3">
-                        <small>Open: Mon - Fri : 09.00 AM - 06.00 PM</small>
-                    </div>
-                </div>
-                <div class="col-lg-5 px-5 text-end">
-                    <div class="h-100 d-inline-flex align-items-center py-3 me-4">
-                        <small>Phone: 027 265 1343</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Topbar End -->
-
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarService</a>
@@ -45,8 +27,8 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-                                asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="InventoryItem"
+                                asp-action="List">Inventory</a>
                         </li>
                     </ul>
                 </div>
@@ -58,13 +40,12 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - CarServiceProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <div class="container-fluid text-dark footer pt-5 mt-5 text-center">
+        &copy; 2024 - CarServiceProject
+    </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

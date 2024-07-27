@@ -5,9 +5,18 @@ namespace CarServiceProject.ViewModels{
     {
         public IQueryable<InventoryItem> InventoryItemsOnSale { get; }
 
-        public HomeViewModel(IQueryable<InventoryItem> inventoryItems)
+        public IQueryable<Service> Services { get; }
+
+        public IQueryable<Employee> Employees { get; }
+
+        public IQueryable<CustomerFeedback> CustomerFeedbacks { get; }
+
+        public HomeViewModel(IQueryable<InventoryItem> inventoryItems, IQueryable<Service> services, IQueryable<Employee> employees, IQueryable<CustomerFeedback> customerFeedbacks )
         {
             InventoryItemsOnSale = inventoryItems;
+            Services = services;
+            Employees = employees;
+            CustomerFeedbacks = customerFeedbacks;
         }
 
     }
