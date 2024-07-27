@@ -1,8 +1,10 @@
 using CarServiceProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarServiceProject.Api;
 
+[Authorize]
 public class BookingsController: ControllerBase
 {
     private readonly IBookingManager _bookingManager;
@@ -14,7 +16,7 @@ public class BookingsController: ControllerBase
 
     [HttpPost]
     [Route("/api/bookings")]
-    public IActionResult CreateBooking([FromBody]  Booking booking)
+    public ActionResult CreateBooking([FromBody]  Booking booking)
     {
         if (booking==null)
         {
@@ -49,7 +51,7 @@ public class BookingsController: ControllerBase
     
     [HttpPut]
     [Route("/api/bookings/{id}")]
-    public IActionResult UpdateBooking(int id, [FromBody] Booking booking)
+    public ActionResult UpdateBooking(int id, [FromBody] Booking booking)
     {
         if (id != booking.Id)
         {
@@ -62,7 +64,7 @@ public class BookingsController: ControllerBase
     
     [HttpDelete]
     [Route("/api/bookings/{id}")]
-    public IActionResult DeleteBooking(int id)
+    public ActionResult DeleteBooking(int id)
     {
         Booking booking = _bookingManager.GetBookingById(id);
         

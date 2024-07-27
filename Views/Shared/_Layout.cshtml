@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Authorization
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -41,10 +43,12 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Service"
                                asp-action="List">Service</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Booking"
-                               asp-action="Records">Manage booking records</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="Records">Manage booking records</a>
                             </li>
+                        }
                     </ul>
                 </div>
                 <div>
