@@ -8,11 +8,9 @@ var connectionString = builder.Configuration.GetConnectionString("CarServiceProj
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
 builder.Services.AddDbContext<CarServiceDbContext>(options =>
-    {
-        options.UseNpgsql(connectionString);
-    }
-);
+    options.UseSqlite(builder.Configuration.GetConnectionString("CarServiceProjectDbContextConnectionPostgres")));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<CarServiceDbContext>();
 
