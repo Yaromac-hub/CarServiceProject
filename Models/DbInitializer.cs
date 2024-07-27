@@ -226,7 +226,7 @@ namespace CarServiceProject.Models
                     {
                         Name = "Oil Changing",
                         Description = "Oil change with high-quality synthetic motor oil and filter replacement.",
-                        ImageUrl = "images/services/TiresReplacement.jpg",
+                        ImageUrl = "images/services/OilChanging.jpg",
                         Price = 49.99M,
                         Duration = new TimeSpan(0, 45, 0)
                     }
