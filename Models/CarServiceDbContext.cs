@@ -12,6 +12,7 @@ namespace CarServiceProject.Models
         public DbSet<ContactInfo> ContactInfos => Set<ContactInfo>();
         public DbSet<Employee> Employees => Set<Employee>();
         public DbSet<CustomerFeedback> CustomerFeedbacks => Set<CustomerFeedback>();
+        public DbSet<Booking> Bookings => Set<Booking>();
     }
 
 }

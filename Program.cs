@@ -18,6 +18,8 @@ builder.Services.AddScoped<ICustomerFeedbackRepository, CustomerFeedbackReposito
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IInventoryItemRepository, InventoryItemRepository>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+builder.Services.AddScoped<IBookingManager, BookingManager>();
 
 
 var app = builder.Build();
